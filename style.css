@@ -1,0 +1,788 @@
+/* =========================================================
+       ПАЛИТРА, ШРИФТЫ, ОБЩИЕ ТОКЕНЫ
+       ФИРМЕННЫЙ СТИЛЬ ГОРОДА ПАВЛОДАРА
+       ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+:root {
+  /* Фирменные цвета Павлодара (брендбук) */
+  --pw-primary: #0ba1a1;
+  /* Основной голубой (Иртыш) */
+  --pw-secondary: #ee741d;
+  /* Оранжевый акцент */
+  --pw-white: #ffffff;
+  /* Белый */
+  --pw-dark: #1a1a1a;
+  /* Тёмный */
+
+  /* Дополнительные цвета */
+  --pw-accent: #d4a574;
+  /* Золотистый (стели, орнаменты) */
+  --pw-light: #f0f8f8;
+  /* Светло-голубой фон */
+
+  /* Для совместимости со старыми именами */
+  --ow-green: #0ba1a1;
+  --ow-green-700: #088888;
+  --ow-yellow: #ee741d;
+  --ow-yellow-700: #d95f0f;
+  --ow-red: #ef4444;
+  --ow-red-700: #b91c1c;
+
+  /* UI */
+  --ow-bg: #f0f8f8;
+  --ow-card: #ffffff;
+  --ow-border: #d4e4e4;
+  --ow-text: #1a1a1a;
+  --ow-muted: #64748b;
+
+  --ow-radius: 14px;
+  --ow-shadow: 0 8px 24px rgba(11, 161, 161, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ow-text);
+  background: var(--ow-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(11, 161, 161, 0.02) 35px, rgba(11, 161, 161, 0.02) 70px);
+  position: relative;
+}
+
+/* Полосы по левому краю */
+body::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  background: linear-gradient(180deg, var(--pw-primary) 0%, var(--pw-secondary) 50%, var(--pw-accent) 100%);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Полосы по правому краю */
+html::after {
+  content: '';
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  background: linear-gradient(180deg, var(--pw-accent) 0%, var(--pw-secondary) 50%, var(--pw-primary) 100%);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* =========================================================
+       НАЦИОНАЛЬНЫЕ ОРНАМЕНТЫ И ДЕКОР
+       ========================================================= */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--pw-primary) 0%, var(--pw-secondary) 50%, var(--pw-accent) 100%);
+  z-index: 10000;
+  pointer-events: none;
+}
+
+/* =========================================================
+       КАРТА
+       ========================================================= */
+#map {
+  position: absolute;
+  inset: 0;
+}
+
+/* =========================================================
+       ВЕРХНЯЯ ПАНЕЛЬ
+       ========================================================= */
+.topbar {
+  position: absolute;
+  top: 16px;
+  left: 50px;
+  right: 16px;
+  z-index: 1000;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+
+  background: var(--ow-card);
+  border: 2px solid var(--ow-border);
+  border-radius: var(--ow-radius);
+  padding: 10px 14px;
+  box-shadow: var(--ow-shadow);
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logo-text {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--pw-primary);
+  letter-spacing: -0.5px;
+}
+
+.city-tagline {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--pw-secondary);
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+       ЯЗЫКОВОЙ ПЕРЕКЛЮЧАТЕЛЬ
+       ========================================================= */
+.language-selector {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--pw-light);
+  border-radius: 8px;
+}
+
+.lang-btn {
+  padding: 6px 10px;
+  border: none;
+  background: transparent;
+  color: var(--ow-muted);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.lang-btn.active {
+  background: var(--pw-primary);
+  color: var(--pw-white);
+  box-shadow: 0 2px 6px rgba(11, 161, 161, 0.2);
+}
+
+.lang-btn:hover:not(.active) {
+  color: var(--pw-primary);
+  background: rgba(11, 161, 161, 0.1);
+}
+
+/* =========================================================
+       ЛЕГЕНДА + БЫСТРЫЕ ДЕЙСТВИЯ
+       ========================================================= */
+.legend {
+  position: absolute;
+  right: 16px;
+  bottom: 100px;
+  z-index: 1000;
+  background: var(--ow-card);
+  border: 1px solid var(--ow-border);
+  border-radius: var(--ow-radius);
+  padding: 10px 12px;
+  box-shadow: var(--ow-shadow);
+  font-size: 13px;
+  min-width: 190px;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 6px;
+}
+
+.legend .row-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* =========================================================
+       НИЖНЯЯ КАРТОЧКА (BOTTOM SHEET)
+       ========================================================= */
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1100;
+  max-height: 50vh;
+  overflow-y: auto;
+
+  background-color: var(--pw-primary);
+  background-image: none;
+  background-size: initial;
+  background-blend-mode: normal;
+  background-attachment: initial;
+
+  border-top: 6px solid var(--pw-secondary);
+  border-left: 6px solid var(--pw-secondary);
+  border-right: 6px solid var(--pw-secondary);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+
+  transition: transform .3s ease;
+  padding: 20px 16px;
+
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+
+.sheet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: url('паттерн.png') center/cover no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sheet.open {
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 20px;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  margin: 0 0 12px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.icon-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  color: var(--pw-primary);
+  background: rgba(255, 255, 255, 0.95);
+  font-weight: 700;
+}
+
+.title,
+.subtitle,
+.tags,
+#place-desc {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+       МОДАЛКА ДОБАВЛЕНИЯ ТОЧЕК (если понадобится)
+       ========================================================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  background: rgba(0, 0, 0, .35);
+  z-index: 1200;
+}
+
+.modal.open {
+  display: grid;
+}
+
+.modal-card {
+  background: #fff;
+  border: 1px solid var(--ow-border);
+  border-radius: 16px;
+  box-shadow: var(--ow-shadow);
+  width: clamp(320px, 90vw, 520px);
+  padding: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.row input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--ow-border);
+  border-radius: 10px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* =========================================================
+       ФИРМЕННЫЕ МАРКЕРЫ (divIcon)
+       ========================================================= */
+.ow-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 800;
+  border: 2px solid rgba(0, 0, 0, .12);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
+  user-select: none;
+}
+
+.ow-marker .stack {
+  display: flex;
+  gap: 2px;
+  font-size: 16px;
+}
+
+/* =========================================================
+       ОТЛАДОЧНАЯ ПАНЕЛЬ + СТАТИСТИКА
+       ========================================================= */
+.debug {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 1300;
+  background: #111827;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  opacity: .9;
+}
+
+.stat {
+  position: absolute;
+  left: 16px;
+  bottom: 48px;
+  z-index: 1200;
+  background: #fff;
+  border: 1px solid var(--ow-border);
+  border-radius: 10px;
+  box-shadow: var(--ow-shadow);
+  font-size: 12px;
+  padding: 8px 10px;
+  color: #111;
+  min-width: 220px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+/* =========================================================
+       ЧАТ С ИИ
+       ========================================================= */
+.btn-chat-toggle {
+  position: fixed;
+  bottom: 50px;
+  left: 24px;
+  z-index: 1050;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ow-green);
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, .3);
+  transition: all .2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-chat-toggle:hover {
+  background: var(--ow-green-700);
+  transform: scale(1.1);
+  box-shadow: 0 12px 28px rgba(34, 197, 94, .4);
+}
+
+.chat-container {
+  position: fixed;
+  bottom: 120px;
+  left: 24px;
+  z-index: 1050;
+  width: clamp(300px, 90vw, 420px);
+  max-height: 500px;
+  background: var(--ow-card);
+  border: 1px solid var(--ow-border);
+  border-radius: 16px;
+  box-shadow: var(--ow-shadow);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(120%);
+  opacity: 0;
+  transition: all .3s ease;
+  pointer-events: none;
+}
+
+.chat-container.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ow-border);
+  background: linear-gradient(135deg, var(--ow-green) 0%, #16a34a 100%);
+  color: #fff;
+  border-radius: 16px 16px 0 0;
+}
+
+.chat-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btn-close-chat {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s;
+}
+
+.btn-close-chat:hover {
+  transform: rotate(90deg);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-message {
+  display: flex;
+  gap: 8px;
+  animation: slideIn .3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-message.user {
+  justify-content: flex-end;
+}
+
+.chat-message.bot {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  word-wrap: break-word;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.user .message-bubble {
+  background: var(--ow-green);
+  color: #fff;
+  border-radius: 12px 4px 12px 12px;
+}
+
+.bot .message-bubble {
+  background: #f1f5f9;
+  color: var(--ow-text);
+  border-radius: 4px 12px 12px 12px;
+  border: 1px solid var(--ow-border);
+}
+
+.message-time {
+  font-size: 11px;
+  color: var(--ow-muted);
+  padding: 0 4px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.chat-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--ow-border);
+  background: var(--ow-bg);
+  border-radius: 0 0 16px 16px;
+}
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--ow-border);
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: inherit;
+  transition: .2s;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: var(--ow-green);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, .1);
+}
+
+.btn-send {
+  background: var(--ow-green);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+  font-size: 13px;
+}
+
+.btn-send:hover {
+  background: var(--ow-green-700);
+}
+
+.btn-send:active {
+  transform: scale(0.98);
+}
+
+.chat-loading {
+  display: flex;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.chat-loading span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ow-muted);
+  animation: bounce 1.4s infinite ease-in-out;
+}
+
+.chat-loading span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.chat-loading span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+       ФИЛЬТРЫ И КНОПКИ
+       ========================================================= */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  border: 1px solid var(--ow-border);
+  border-radius: 999px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  background: var(--pw-light);
+  border-color: var(--pw-primary);
+}
+
+.chip input {
+  accent-color: var(--pw-primary);
+  cursor: pointer;
+}
+
+.btn {
+  background: var(--pw-primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 4px 12px rgba(11, 161, 161, 0.2);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn:hover {
+  background: #088888;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(11, 161, 161, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  background: #fff;
+  color: var(--pw-primary);
+  border: 2px solid var(--ow-border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-ghost:hover {
+  border-color: var(--pw-primary);
+  background: var(--pw-light);
+  color: var(--pw-primary);
+}
+
+.btn-secondary {
+  background: var(--pw-secondary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 4px 12px rgba(238, 116, 29, 0.2);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-secondary:hover {
+  background: #d95f0f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(238, 116, 29, 0.3);
+}
